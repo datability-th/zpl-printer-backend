@@ -1,4 +1,6 @@
-var printer = require("printer");
+//var printer = require("printer");
+var { templateSINGLE, templateDUAL } = require("./template");
+
 var objInfoSticker = {
   _product_number1_: "",
   _product_name1_: "",
@@ -19,10 +21,14 @@ var objInfoSticker = {
   _serial_number2_: "",
 };
 
-const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI, template) => {
+const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
+  var template = templateSINGLE;
+  var _mustSingleFormat = true;
   for (var i = 0; i < fakeAPI.length; i++) {
     if (fakeAPI.length - 1 !== i) {
       // Dual Format
+      template = templateDUAL;
+      _mustSingleFormat = false;
       console.log("i>>>= ", i + 1, "(Dual Format)");
       objInfoSticker._product_number1_ = fakeAPI[i]._product_number_;
       objInfoSticker._product_name1_ = fakeAPI[i]._product_name_;
@@ -32,18 +38,21 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI, template) => {
       objInfoSticker._color1_ = fakeAPI[i]._color_;
       objInfoSticker._lot_date1_ = fakeAPI[i]._lot_date_;
       objInfoSticker._serial_number1_ = fakeAPI[i]._serial_number_;
-      objInfoSticker._product_number2_ = fakeAPI[i]._product_number_;
-      objInfoSticker._product_name2_ = fakeAPI[i]._product_name_;
-      objInfoSticker._type2_ = fakeAPI[i]._type_;
-      objInfoSticker._product2_ = fakeAPI[i]._product_;
-      objInfoSticker._surface2_ = fakeAPI[i]._surface_;
-      objInfoSticker._color2_ = fakeAPI[i]._color_;
-      objInfoSticker._lot_date2_ = fakeAPI[i]._lot_date_;
-      objInfoSticker._serial_number2_ = fakeAPI[i]._serial_number_;
+
+      objInfoSticker._product_number2_ = fakeAPI[i + 1]._product_number_;
+      objInfoSticker._product_name2_ = fakeAPI[i + 1]._product_name_;
+      objInfoSticker._type2_ = fakeAPI[i + 1]._type_;
+      objInfoSticker._product2_ = fakeAPI[i + 1]._product_;
+      objInfoSticker._surface2_ = fakeAPI[i + 1]._surface_;
+      objInfoSticker._color2_ = fakeAPI[i + 1]._color_;
+      objInfoSticker._lot_date2_ = fakeAPI[i + 1]._lot_date_;
+      objInfoSticker._serial_number2_ = fakeAPI[i + 1]._serial_number_;
     } else {
       if (isOdd) {
         // Single Format
-        console.log("i>>>= ", i + 1, "(Single Format)");
+        template = templateSINGLE;
+        _mustSingleFormat = true;
+        console.log("i>>>= ", i, "(Single Format)");
         objInfoSticker._product_number1_ = fakeAPI[i]._product_number_;
         objInfoSticker._product_name1_ = fakeAPI[i]._product_name_;
         objInfoSticker._type1_ = fakeAPI[i]._type_;
@@ -55,7 +64,7 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI, template) => {
       }
     }
     var templateFulfill = FormatTemplateSticker(
-      isOdd,
+      _mustSingleFormat,
       template,
       objInfoSticker
     );
@@ -64,7 +73,7 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI, template) => {
   }
 };
 
-const FormatTemplateSticker = (isOdd, template, objInfoSticker) => {
+const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
   // Template Page #1
   template = template.replace(
     /_product_number1_/g,
@@ -85,7 +94,10 @@ const FormatTemplateSticker = (isOdd, template, objInfoSticker) => {
   );
 
   // Template Page #2 --> Print when even of Array
-  if (!isOdd) {
+  // console.log("---->>>>");
+  // console.log("_mustSingleFormat", _mustSingleFormat);
+  // console.log("---->>>>");
+  if (_mustSingleFormat == false) {
     template = template.replace(
       /_product_number2_/g,
       objInfoSticker._product_number2_
@@ -109,24 +121,26 @@ const FormatTemplateSticker = (isOdd, template, objInfoSticker) => {
 };
 
 const CheckPrinterName = () => {
-  console.log(
-    "default printer name: " +
-      (printer.getDefaultPrinterName() || "is not defined on your computer")
-  );
+  // console.log(
+  //   "default printer name: " +
+  //     (printer.getDefaultPrinterName() || "is not defined on your computer")
+  // );
 };
 
-const PrintZebra = (barcode_text, printer_name) => {
-  printer.printDirect({
-    data: template.replace(/barcode/, barcode_text),
-    printer: printer_name,
-    type: "RAW",
-    success: function () {
-      console.log("printed: " + barcode_text);
-    },
-    error: function (err) {
-      console.log(err);
-    },
-  });
+const PrintZebra = (templateFulfill, printer_name) => {
+  console.log("====");
+  console.log(templateFulfill);
+  // printer.printDirect({
+  //   data: templateFulfill,
+  //   printer: printer_name,
+  //   type: "RAW",
+  //   success: function () {
+  //     console.log("printed: " + barcode_text);
+  //   },
+  //   error: function (err) {
+  //     console.log(err);
+  //   },
+  // });
 };
 
 module.exports = { CheckPrinterName, MapItemsToPrintStickerZPL };
