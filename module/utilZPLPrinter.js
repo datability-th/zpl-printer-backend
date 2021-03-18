@@ -1,4 +1,4 @@
-var printer = require("printer");
+// var printer = require("printer");
 var { templateSINGLE, templateDUAL } = require("./template");
 
 var objInfoSticker = {
@@ -121,26 +121,26 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
 };
 
 const CheckPrinterName = () => {
-  console.log(
-    "default printer name: " +
-      (printer.getDefaultPrinterName() || "is not defined on your computer")
-  );
+  // console.log(
+  //   "default printer name: " +
+  //     (printer.getDefaultPrinterName() || "is not defined on your computer")
+  // );
 };
 
 const PrintZebra = (templateFulfill, printer_name) => {
-  //console.log("====");
-  //console.log(templateFulfill);
-  printer.printDirect({
-    data: templateFulfill,
-    printer: printer_name,
-    type: "RAW",
-    success: function () {
-      console.log("printed: " + barcode_text);
-    },
-    error: function (err) {
-      console.log(err);
-    },
-  });
+  console.log("====");
+  console.log(templateFulfill);
+  // printer.printDirect({
+  //   data: templateFulfill,
+  //   printer: printer_name,
+  //   type: "RAW",
+  //   success: function () {
+  //     console.log("printed: " + barcode_text);
+  //   },
+  //   error: function (err) {
+  //     console.log(err);
+  //   },
+  // });
 };
 
 module.exports = { CheckPrinterName, MapItemsToPrintStickerZPL };

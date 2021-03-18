@@ -9,6 +9,21 @@ const printerName = "ZDesigner ZD220-203dpi ZPL";
 const app = express();
 app.use(bodyParser.json());
 
+// Set up CORS Middleware and logging
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, x-access-token, Content-Type, Accept"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+  );
+  console.log(req.method, req.originalUrl);
+  next();
+});
+
 app.post("/zpl_print", (req, res) => {
   // Check Array of fakeAPI
   if (fakeAPI.data.length % 2 == 0) {
