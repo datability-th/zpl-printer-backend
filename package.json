@@ -1,8 +1,8 @@
 {
-  "name": "printer_v1",
+  "name": "zpl-printer-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "node-gyp": "^6.1.0",
+    "node-pre-gyp": "^0.14.0",
     "printer": "^0.4.0"
   }
 }
