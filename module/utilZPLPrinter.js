@@ -135,7 +135,7 @@ const PrintZebra = (templateFulfill, printer_name) => {
     printer: printer_name,
     type: "RAW",
     success: function () {
-      console.log("printed: " + barcode_text);
+      console.log("printed: " + printer_name);
     },
     error: function (err) {
       console.log(err);
