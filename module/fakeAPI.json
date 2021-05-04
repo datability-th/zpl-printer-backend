@@ -1,34 +1,24 @@
 {
   "data": [
     {
-      "_product_number_": "--------1",
-      "_product_name_": "",
-      "_type_": "",
-      "_product_": "",
-      "_surface_": "",
-      "_color_": "",
-      "_lot_date_": "",
-      "_serial_number_": ""
+      "_product_number_": "FAKE_ROUCT NUMBER #1",
+      "_product_name_": "Wood Table",
+      "_type_": "WOOD",
+      "_product_": "Product",
+      "_surface_": "Surface",
+      "_color_": "Color",
+      "_lot_date_": "Lot @",
+      "_serial_number_": "231239403001"
     },
     {
-      "_product_number_": "--------2",
-      "_product_name_": "",
-      "_type_": "",
-      "_product_": "",
-      "_surface_": "",
-      "_color_": "",
-      "_lot_date_": "",
-      "_serial_number_": ""
-    },
-    {
-      "_product_number_": "--------3",
-      "_product_name_": "",
-      "_type_": "",
-      "_product_": "",
-      "_surface_": "",
-      "_color_": "",
-      "_lot_date_": "",
-      "_serial_number_": ""
+      "_product_number_": "FAKE_PROUCT NUMBER #2",
+      "_product_name_": "Wood Table",
+      "_type_": "WOOD",
+      "_product_": "Product",
+      "_surface_": "Surface",
+      "_color_": "Color",
+      "_lot_date_": "Lot @",
+      "_serial_number_": "231239403001"
     }
   ]
 }

@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const util = require("./module/utilZPLPrinter");
 var fakeAPI = require("./module/fakeAPI.json");
 var isOdd = true; // Check Array of fakeAPI
-const printerName = "ZDesigner ZD220-203dpi ZPL";
+const printerName = "ZDesigner ZD230-203dpi ZPL";
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,7 +26,9 @@ app.use(function (req, res, next) {
 
 app.post("/zpl_print", (req, res) => {
   // Check Array of fakeAPI
-  if (fakeAPI.data.length % 2 == 0) {
+  var _data = req.body.data;
+  //var _data = fakeAPI.data;
+  if (_data.length % 2 == 0) {
     //console.log("--->templateDUAL");
     isOdd = false;
   }
@@ -35,7 +37,7 @@ app.post("/zpl_print", (req, res) => {
   util.CheckPrinterName();
 
   // Command Print on ZPL Format
-  util.MapItemsToPrintStickerZPL(printerName, isOdd, fakeAPI.data);
+  util.MapItemsToPrintStickerZPL(printerName, isOdd, _data);
 
   res.status(201).json({ status: "success" });
 });

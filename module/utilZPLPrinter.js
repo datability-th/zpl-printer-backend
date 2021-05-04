@@ -24,6 +24,7 @@ var objInfoSticker = {
 const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
   var template = templateSINGLE;
   var _mustSingleFormat = true;
+  console.log("fakeAPI", fakeAPI);
   for (var i = 0; i < fakeAPI.length; i++) {
     if (fakeAPI.length - 1 !== i) {
       // Dual Format
