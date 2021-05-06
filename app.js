@@ -29,10 +29,10 @@ app.post("/zpl_print", (req, res) => {
   var _data = req.body;
   // console.log(_data);
   //var _data = fakeAPI.data;
-  if (_data.length % 2 == 0) {
-    //console.log("--->templateDUAL");
-    isOdd = false;
-  }
+  // if (_data.length % 2 == 0) {
+  //   //console.log("--->templateDUAL");
+  //   isOdd = false;
+  // }
 
   // Check Printer Zebra Name
   util.CheckPrinterName();
