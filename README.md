@@ -10,6 +10,8 @@ node app.js
 
 ### Dependency
 
+https://nodejs.org/en/download/releases/
+
 ```bash
 "node": v15.11.0
 "npm": 7.6.0
@@ -83,3 +85,5 @@ or
   unicode: '13.0'
 }
 ```
+
+![picture](setup_printer/Previous Releases.png)
