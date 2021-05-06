@@ -1,7 +1,10 @@
 var printer = require("printer");
+//import {printer} from "printer";
+const moment = require('moment');
 var { templateSINGLE, templateDUAL } = require("./template");
 
 var objInfoSticker = {
+  _product1_: "",
   _product_number1_: "",
   _product_name1_: "",
   _type1_: "",
@@ -15,6 +18,7 @@ var objInfoSticker = {
   _spec1_: "",
   _profile1_: "",
 
+  _product2_: "",
   _product_number2_: "",
   _product_name2_: "",
   _type2_: "",
@@ -38,32 +42,34 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
       // Dual Format
       template = templateDUAL;
       _mustSingleFormat = false;
+      
       // console.log("i>>>= ", i + 1, "(Dual Format)");
-      objInfoSticker._product_number1_ = fakeAPI[i]._product_number_;
-      objInfoSticker._product_name1_ = fakeAPI[i]._product_name_;
-      objInfoSticker._type1_ = fakeAPI[i]._type_;
-      objInfoSticker._product1_ = fakeAPI[i]._product_;
-      objInfoSticker._surface1_ = fakeAPI[i]._surface_;
-      objInfoSticker._color1_ = fakeAPI[i]._color_;
-      objInfoSticker._lot_date1_ = fakeAPI[i]._lot_date_;
-      objInfoSticker._serial_number1_ = fakeAPI[i]._serial_number_;
-      objInfoSticker._remark_date1_ = fakeAPI[i]._remark_date_;
-      objInfoSticker._qty1_ = fakeAPI[i]._qty_;
-      objInfoSticker._spec1_ = fakeAPI[i]._spec_;
-      objInfoSticker._profile1_ = fakeAPI[i]._profile_;
+      objInfoSticker._product1_ = (fakeAPI[i]._product_ === undefined || fakeAPI[i]._product_ === "") ? "-" : fakeAPI[i]._product_;
+      objInfoSticker._product_number1_ = (fakeAPI[i]._product_number_ === undefined || fakeAPI[i]._product_number_ === "") ? "-" : fakeAPI[i]._product_number_;
+      objInfoSticker._product_name1_ = (fakeAPI[i]._product_name_ === undefined || fakeAPI[i]._product_name_ === "") ? "-" : fakeAPI[i]._product_name_;
+      objInfoSticker._type1_ = (fakeAPI[i]._type_ === undefined || fakeAPI[i]._type_ === "") ? "-" : fakeAPI[i]._type_;
+      objInfoSticker._surface1_ = (fakeAPI[i]._surface_ === undefined || fakeAPI[i]._surface_ === "") ? "-" : fakeAPI[i]._surface_;
+      objInfoSticker._color1_ = (fakeAPI[i]._color_ === undefined || fakeAPI[i]._color_ === "") ? "-" : fakeAPI[i]._color_;
+      objInfoSticker._lot_date1_ = (fakeAPI[i]._lot_date_ === undefined || fakeAPI[i]._lot_date_ === "") ? "-" : moment(new Date(fakeAPI[i]._lot_date_)).format('DD/MM/YYYY');
+      objInfoSticker._serial_number1_ = (fakeAPI[i]._serial_number_ === undefined || fakeAPI[i]._serial_number_ === "") ? "-" : fakeAPI[i]._serial_number_;
+      
+      objInfoSticker._remark_date1_ = (fakeAPI[i]._remark_date_ === undefined || fakeAPI[i]._remark_date_ === "") ? "-" : moment(new Date(fakeAPI[i]._remark_date_)).format('DD/MM/YYYY');
+      objInfoSticker._qty1_ = (fakeAPI[i]._qty_ === undefined || fakeAPI[i]._qty_ === "") ? "-" : fakeAPI[i]._qty_;
+      objInfoSticker._spec1_ = (fakeAPI[i]._spec_ === undefined || fakeAPI[i]._spec_ === "") ? "-" : fakeAPI[i]._spec_;
+      objInfoSticker._profile1_ = (fakeAPI[i]._profile_ === undefined || fakeAPI[i]._profile_ === "") ? "-" : fakeAPI[i]._profile_;
 
-      objInfoSticker._product_number2_ = fakeAPI[i + 1]._product_number_;
-      objInfoSticker._product_name2_ = fakeAPI[i + 1]._product_name_;
-      objInfoSticker._type2_ = fakeAPI[i + 1]._type_;
-      objInfoSticker._product2_ = fakeAPI[i + 1]._product_;
-      objInfoSticker._surface2_ = fakeAPI[i + 1]._surface_;
-      objInfoSticker._color2_ = fakeAPI[i + 1]._color_;
-      objInfoSticker._lot_date2_ = fakeAPI[i + 1]._lot_date_;
-      objInfoSticker._serial_number2_ = fakeAPI[i + 1]._serial_number_;
-      objInfoSticker._remark_date2_ = fakeAPI[i + 1]._remark_date_;
-      objInfoSticker._qty2_ = fakeAPI[i + 1]._qty_;
-      objInfoSticker._spec2_ = fakeAPI[i + 1]._spec_;
-      objInfoSticker._profile2_ = fakeAPI[i + 1]._profile_;
+      // objInfoSticker._product_number2_ = fakeAPI[i + 1]._product_number_;
+      // objInfoSticker._product_name2_ = fakeAPI[i + 1]._product_name_;
+      // objInfoSticker._type2_ = fakeAPI[i + 1]._type_;
+      // objInfoSticker._product2_ = fakeAPI[i + 1]._product_;
+      // objInfoSticker._surface2_ = fakeAPI[i + 1]._surface_;
+      // objInfoSticker._color2_ = fakeAPI[i + 1]._color_;
+      // objInfoSticker._lot_date2_ = fakeAPI[i + 1]._lot_date_;
+      // objInfoSticker._serial_number2_ = fakeAPI[i + 1]._serial_number_;
+      // objInfoSticker._remark_date2_ = fakeAPI[i + 1]._remark_date_;
+      // objInfoSticker._qty2_ = fakeAPI[i + 1]._qty_;
+      // objInfoSticker._spec2_ = fakeAPI[i + 1]._spec_;
+      // objInfoSticker._profile2_ = fakeAPI[i + 1]._profile_;
 
     } else {
       if (isOdd) {
@@ -71,18 +77,19 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
         template = templateSINGLE;
         _mustSingleFormat = true;
         // console.log("i>>>= ", i, "(Single Format)");
-        objInfoSticker._product_number1_ = fakeAPI[i]._product_number_;
-        objInfoSticker._product_name1_ = fakeAPI[i]._product_name_;
-        objInfoSticker._type1_ = fakeAPI[i]._type_;
-        objInfoSticker._product1_ = fakeAPI[i]._product_;
-        objInfoSticker._surface1_ = fakeAPI[i]._surface_;
-        objInfoSticker._color1_ = fakeAPI[i]._color_;
-        objInfoSticker._lot_date1_ = fakeAPI[i]._lot_date_;
-        objInfoSticker._serial_number1_ = fakeAPI[i]._serial_number_;
-        objInfoSticker._remark_date1_ = fakeAPI[i]._remark_date_;
-        objInfoSticker._qty1_ = fakeAPI[i]._qty_;
-        objInfoSticker._spec1_ = fakeAPI[i]._spec_;
-        objInfoSticker._profile1_ = fakeAPI[i]._profile_;
+        objInfoSticker._product1_ = (fakeAPI[i]._product_ === undefined || fakeAPI[i]._product_ === "") ? "-" : fakeAPI[i]._product_;
+        objInfoSticker._product_number1_ = (fakeAPI[i]._product_number_ === undefined || fakeAPI[i]._product_number_ === "") ? "-" : fakeAPI[i]._product_number_;
+        objInfoSticker._product_name1_ = (fakeAPI[i]._product_name_ === undefined || fakeAPI[i]._product_name_ === "") ? "-" : fakeAPI[i]._product_name_;
+        objInfoSticker._type1_ = (fakeAPI[i]._type_ === undefined || fakeAPI[i]._type_ === "") ? "-" : fakeAPI[i]._type_;
+        objInfoSticker._surface1_ = (fakeAPI[i]._surface_ === undefined || fakeAPI[i]._surface_ === "") ? "-" : fakeAPI[i]._surface_;
+        objInfoSticker._color1_ = (fakeAPI[i]._color_ === undefined || fakeAPI[i]._color_ === "") ? "-" : fakeAPI[i]._color_;
+        objInfoSticker._lot_date1_ = (fakeAPI[i]._lot_date_ === undefined || fakeAPI[i]._lot_date_ === "") ? "-" : moment(new Date(fakeAPI[i]._lot_date_)).format('DD/MM/YYYY');
+        objInfoSticker._serial_number1_ = (fakeAPI[i]._serial_number_ === undefined || fakeAPI[i]._serial_number_ === "") ? "-" : fakeAPI[i]._serial_number_;
+        
+        objInfoSticker._remark_date1_ = (fakeAPI[i]._remark_date_ === undefined || fakeAPI[i]._remark_date_ === "") ? "-" : moment(new Date(fakeAPI[i]._remark_date_)).format('DD/MM/YYYY');
+        objInfoSticker._qty1_ = (fakeAPI[i]._qty_ === undefined || fakeAPI[i]._qty_ === "") ? "-" : fakeAPI[i]._qty_;
+        objInfoSticker._spec1_ = (fakeAPI[i]._spec_ === undefined || fakeAPI[i]._spec_ === "") ? "-" : fakeAPI[i]._spec_;
+        objInfoSticker._profile1_ = (fakeAPI[i]._profile_ === undefined || fakeAPI[i]._profile_ === "") ? "-" : fakeAPI[i]._profile_;
       }
     }
     var templateFulfill = FormatTemplateSticker(
