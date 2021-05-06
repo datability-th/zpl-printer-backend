@@ -86,4 +86,4 @@ or
 }
 ```
 
-![picture](setup_printer/Previous Releases.png)
+![picture](./setup_printer/Previous Releases.png)
