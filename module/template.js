@@ -53,6 +53,9 @@ var templateSINGLE = `
 ^BQN,2,8
 ^FDMA,\_serial_number1_\
 ^FS
+^FT545,455^A0N,20,20^FH\^CI28^FDwww.biowoodthailand.com^FS^CI27
+^FO531,430^GB253,36,2,,1^FS
+
 ^XZ
 `;
 
@@ -111,6 +114,10 @@ var templateDUAL = `
 ^BQN,2,8
 ^FDMA,\_serial_number1_\
 ^FS
+
+^FT545,455^A0N,20,20^FH\^CI28^FDwww.biowoodthailand.com^FS^CI27
+^FO531,430^GB253,36,2,,1^FS
+
 ^XZ
 `;
 
