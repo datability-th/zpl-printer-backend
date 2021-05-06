@@ -24,7 +24,7 @@ var objInfoSticker = {
 const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
   var template = templateSINGLE;
   var _mustSingleFormat = true;
-  console.log("fakeAPI", fakeAPI);
+  // console.log("fakeAPI",fakeAPI)
   for (var i = 0; i < fakeAPI.length; i++) {
     if (fakeAPI.length - 1 !== i) {
       // Dual Format
@@ -124,13 +124,13 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
 const CheckPrinterName = () => {
   console.log(
     "default printer name: " +
-      (printer.getDefaultPrinterName() || "is not defined on your computer")
+      ("printer.getDefaultPrinterName()" || "is not defined on your computer")
   );
 };
 
 const PrintZebra = (templateFulfill, printer_name) => {
-  //console.log("====");
-  //console.log(templateFulfill);
+  // console.log("====");
+  // console.log(templateFulfill);
   printer.printDirect({
     data: templateFulfill,
     printer: printer_name,

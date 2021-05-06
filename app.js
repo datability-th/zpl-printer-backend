@@ -26,7 +26,8 @@ app.use(function (req, res, next) {
 
 app.post("/zpl_print", (req, res) => {
   // Check Array of fakeAPI
-  var _data = req.body.data;
+  var _data = req.body;
+  // console.log(_data);
   //var _data = fakeAPI.data;
   if (_data.length % 2 == 0) {
     //console.log("--->templateDUAL");
@@ -46,6 +47,6 @@ app.get("/", (req, res) => {
   res.send("Hi ZPL Printer Backend");
 });
 
-app.listen(3000, () => {
-  console.log("Start server at port 3000.");
+app.listen(4000, () => {
+  console.log("Start server at port 4000.");
 });
