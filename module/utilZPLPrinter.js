@@ -9,7 +9,11 @@ var objInfoSticker = {
   _surface1_: "",
   _color1_: "",
   _lot_date1_: "",
-  _serial_number1_: "",
+  _serial_number1_: "", 
+  _remark_date1_: "",
+  _qty1_: "",
+  _spec1_: "",
+  _profile1_: "",
 
   _product_number2_: "",
   _product_name2_: "",
@@ -19,6 +23,10 @@ var objInfoSticker = {
   _color2_: "",
   _lot_date2_: "",
   _serial_number2_: "",
+  _remark_date2_: "",
+  _qty2_: "",
+  _spec2_: "",
+  _profile2_: "",
 };
 
 const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
@@ -30,7 +38,7 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
       // Dual Format
       template = templateDUAL;
       _mustSingleFormat = false;
-      console.log("i>>>= ", i + 1, "(Dual Format)");
+      // console.log("i>>>= ", i + 1, "(Dual Format)");
       objInfoSticker._product_number1_ = fakeAPI[i]._product_number_;
       objInfoSticker._product_name1_ = fakeAPI[i]._product_name_;
       objInfoSticker._type1_ = fakeAPI[i]._type_;
@@ -39,6 +47,10 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
       objInfoSticker._color1_ = fakeAPI[i]._color_;
       objInfoSticker._lot_date1_ = fakeAPI[i]._lot_date_;
       objInfoSticker._serial_number1_ = fakeAPI[i]._serial_number_;
+      objInfoSticker._remark_date1_ = fakeAPI[i]._remark_date_;
+      objInfoSticker._qty1_ = fakeAPI[i]._qty_;
+      objInfoSticker._spec1_ = fakeAPI[i]._spec_;
+      objInfoSticker._profile1_ = fakeAPI[i]._profile_;
 
       objInfoSticker._product_number2_ = fakeAPI[i + 1]._product_number_;
       objInfoSticker._product_name2_ = fakeAPI[i + 1]._product_name_;
@@ -48,12 +60,17 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
       objInfoSticker._color2_ = fakeAPI[i + 1]._color_;
       objInfoSticker._lot_date2_ = fakeAPI[i + 1]._lot_date_;
       objInfoSticker._serial_number2_ = fakeAPI[i + 1]._serial_number_;
+      objInfoSticker._remark_date2_ = fakeAPI[i + 1]._remark_date_;
+      objInfoSticker._qty2_ = fakeAPI[i + 1]._qty_;
+      objInfoSticker._spec2_ = fakeAPI[i + 1]._spec_;
+      objInfoSticker._profile2_ = fakeAPI[i + 1]._profile_;
+
     } else {
       if (isOdd) {
         // Single Format
         template = templateSINGLE;
         _mustSingleFormat = true;
-        console.log("i>>>= ", i, "(Single Format)");
+        // console.log("i>>>= ", i, "(Single Format)");
         objInfoSticker._product_number1_ = fakeAPI[i]._product_number_;
         objInfoSticker._product_name1_ = fakeAPI[i]._product_name_;
         objInfoSticker._type1_ = fakeAPI[i]._type_;
@@ -62,6 +79,10 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
         objInfoSticker._color1_ = fakeAPI[i]._color_;
         objInfoSticker._lot_date1_ = fakeAPI[i]._lot_date_;
         objInfoSticker._serial_number1_ = fakeAPI[i]._serial_number_;
+        objInfoSticker._remark_date1_ = fakeAPI[i]._remark_date_;
+        objInfoSticker._qty1_ = fakeAPI[i]._qty_;
+        objInfoSticker._spec1_ = fakeAPI[i]._spec_;
+        objInfoSticker._profile1_ = fakeAPI[i]._profile_;
       }
     }
     var templateFulfill = FormatTemplateSticker(
@@ -93,6 +114,10 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
     /_serial_number1_/g,
     objInfoSticker._serial_number1_
   );
+  template = template.replace(/_qty1_/g, objInfoSticker._qty1_);
+  template = template.replace(/_spec1_/g, objInfoSticker._spec1_);
+  template = template.replace(/_profile1_/g, objInfoSticker._profile1_);
+  template = template.replace(/_remark_date1_/g, objInfoSticker._remark_date1_);
 
   // Template Page #2 --> Print when even of Array
   // console.log("---->>>>");
@@ -116,6 +141,10 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
       /_serial_number2_/g,
       objInfoSticker._serial_number2_
     );
+    template = template.replace(/_qty2_/g, objInfoSticker._qty2_);
+    template = template.replace(/_spec2_/g, objInfoSticker._spec2_);
+    template = template.replace(/_profile2_/g, objInfoSticker._profile2_);
+    template = template.replace(/_remark_date2_/g, objInfoSticker._remark_date2_);
   }
 
   return template;
