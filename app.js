@@ -1,10 +1,11 @@
+import config from "./config.json";
 const express = require("express");
 const bodyParser = require("body-parser");
 
 const util = require("./module/utilZPLPrinter");
 var fakeAPI = require("./module/fakeAPI.json");
 var isOdd = true; // Check Array of fakeAPI
-const printerName = "ZDesigner ZD230-203dpi ZPL";
+const printerName = config.printerName;
 
 const app = express();
 app.use(bodyParser.json());

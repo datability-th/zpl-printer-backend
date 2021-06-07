@@ -87,3 +87,29 @@ or
 ```
 
 ![picture](./setup_printer/PreviousReleases.png)
+
+## API Document
+
+```bash
+http://localhost:10000/zpl_print
+```
+
+```bash
+{
+    "data": [
+        {
+            "_product_number_": "--------1",
+            "_product_name_": "",
+            "_type_": "",
+            "_product_": "",
+            "_surface_": "",
+            "_color_": "",
+            "_lot_date_": "",
+            "_serial_number_": "",
+            "_width1_": "",
+            "_thick1_": "",
+            "_length1_": ""
+        }
+    ]
+}
+```
