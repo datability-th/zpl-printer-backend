@@ -8,14 +8,13 @@ var objInfoSticker = {
   _product_number1_: "",
   _product_name1_: "",
   _type1_: "",
-  _product1_: "",
   _surface1_: "",
   _color1_: "",
   _lot_date1_: "",
   _serial_number1_: "",
   _remark_date1_: "", // Received Date
   _qty1_: "",
-  _spec1_: "",
+  // _spec1_: "",
   _profile1_: "",
   _width1_: "",
   _thick1_: "",
@@ -25,14 +24,13 @@ var objInfoSticker = {
   _product_number2_: "",
   _product_name2_: "",
   _type2_: "",
-  _product2_: "",
   _surface2_: "",
   _color2_: "",
   _lot_date2_: "",
   _serial_number2_: "",
   _remark_date2_: "", // Received Date
   _qty2_: "",
-  _spec2_: "",
+  // _spec2_: "",
   _profile2_: "",
   _width2_: "",
   _thick2_: "",
@@ -95,14 +93,29 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
       fakeAPI[i]._qty_ === undefined || fakeAPI[i]._qty_ === ""
         ? "-"
         : fakeAPI[i]._qty_;
-    objInfoSticker._spec1_ =
-      fakeAPI[i]._spec_ === undefined || fakeAPI[i]._spec_ === ""
-        ? "-"
-        : fakeAPI[i]._spec_;
+    // objInfoSticker._spec1_ =
+    //   fakeAPI[i]._spec_ === undefined || fakeAPI[i]._spec_ === ""
+    //     ? "-"
+    //     : fakeAPI[i]._spec_;
     objInfoSticker._profile1_ =
       fakeAPI[i]._profile_ === undefined || fakeAPI[i]._profile_ === ""
         ? "-"
         : fakeAPI[i]._profile_;
+    // New Fields
+    objInfoSticker._width1_ =
+      fakeAPI[i]._width_ === undefined || fakeAPI[i]._width_ === ""
+        ? "-"
+        : fakeAPI[i]._width_;
+
+    objInfoSticker._thick1_ =
+      fakeAPI[i]._thick_ === undefined || fakeAPI[i]._thick_ === ""
+        ? "-"
+        : fakeAPI[i]._thick_;
+
+    objInfoSticker._length1_ =
+      fakeAPI[i]._length_ === undefined || fakeAPI[i]._length_ === ""
+        ? "-"
+        : fakeAPI[i]._length_;
     // } else {
     //   if (isOdd) {
     //     // Single Format
@@ -154,7 +167,7 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
     objInfoSticker._serial_number1_
   );
   template = template.replace(/_qty1_/g, objInfoSticker._qty1_);
-  template = template.replace(/_spec1_/g, objInfoSticker._spec1_);
+  // template = template.replace(/_spec1_/g, objInfoSticker._spec1_);
   template = template.replace(/_profile1_/g, objInfoSticker._profile1_);
   template = template.replace(/_remark_date1_/g, objInfoSticker._remark_date1_);
   template = template.replace(/_width1_/g, objInfoSticker._spec1_);
@@ -184,7 +197,7 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
       objInfoSticker._serial_number2_
     );
     template = template.replace(/_qty2_/g, objInfoSticker._qty2_);
-    template = template.replace(/_spec2_/g, objInfoSticker._spec2_);
+    // template = template.replace(/_spec2_/g, objInfoSticker._spec2_);
     template = template.replace(/_profile2_/g, objInfoSticker._profile2_);
     template = template.replace(
       /_remark_date2_/g,

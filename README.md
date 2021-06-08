@@ -106,9 +106,13 @@ http://localhost:10000/zpl_print
             "_color_": "",
             "_lot_date_": "",
             "_serial_number_": "",
-            "_width1_": "",
-            "_thick1_": "",
-            "_length1_": ""
+            "_width_": "",
+            "_remark_date_": "", // Received Date
+            "_qty_": "",
+            "_profile_": "",
+            "_width_": "",
+            "_thick_": "",
+            "_length_": ""
         }
     ]
 }
