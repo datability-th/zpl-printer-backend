@@ -98,21 +98,19 @@ http://localhost:10000/zpl_print
 {
     "data": [
         {
-            "_product_number_": "--------1",
+            "_received_date_": "",
             "_product_name_": "",
-            "_type_": "",
-            "_product_": "",
-            "_surface_": "",
+            "_product_id_": "",
+            "_packing_list_": "",
+            "_product_code_": "",
             "_color_": "",
-            "_lot_date_": "",
-            "_serial_number_": "",
-            "_width_": "",
-            "_remark_date_": "", // Received Date
-            "_qty_": "",
-            "_profile_": "",
+            "_surface_": "",
             "_width_": "",
             "_thick_": "",
-            "_length_": ""
+            "_length_": "",
+            "_qty_": "",
+            "_serial_number_": "",
+            "_image_": ""
         }
     ]
 }

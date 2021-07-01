@@ -15,6 +15,8 @@ var objInfoSticker = {
   _thick1_: "",
   _length1_: "",
   _qty1_: "",
+  _serial_number1_: "",
+  _image1_: "",
 
   _received_date2_: "",
   _product_name2_: "",
@@ -27,6 +29,8 @@ var objInfoSticker = {
   _thick2_: "",
   _length2_: "",
   _qty2_: "",
+  _serial_number2_: "",
+  _image2_: "",
 };
 
 const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
@@ -111,6 +115,20 @@ const MapItemsToPrintStickerZPL = (printerName, isOdd, fakeAPI) => {
       fakeAPI[i]._qty_ === undefined || fakeAPI[i]._qty_ === ""
         ? "-"
         : fakeAPI[i]._qty_;
+
+    // _serial_number_
+    objInfoSticker._serial_number1_ =
+      fakeAPI[i]._serial_number_ === undefined ||
+      fakeAPI[i]._serial_number_ === ""
+        ? "-"
+        : fakeAPI[i]._serial_number_;
+
+    // _image_
+    // objInfoSticker._image1_ =
+    //   fakeAPI[i]._image_ === undefined || fakeAPI[i]._image_ === ""
+    //     ? "-"
+    //     : fakeAPI[i]._image_;
+
     // } else {
     //   if (isOdd) {
     //     // Single Format
@@ -167,6 +185,11 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
   template = template.replace(/_thick1_/g, objInfoSticker._profile1_);
   template = template.replace(/_lenght1_/g, objInfoSticker._remark_date1_);
   template = template.replace(/_qty1_/g, objInfoSticker._qty1_);
+  template = template.replace(
+    /_serial_number1_/g,
+    objInfoSticker._serial_number1_
+  );
+  // template = template.replace(/_image1_/g, objInfoSticker._image1_);
 
   // Template Page #2 --> Print when even of Array
   // console.log("---->>>>");
@@ -196,6 +219,11 @@ const FormatTemplateSticker = (_mustSingleFormat, template, objInfoSticker) => {
     template = template.replace(/_thick2_/g, objInfoSticker._profile2_);
     template = template.replace(/_lenght2_/g, objInfoSticker._remark_date2_);
     template = template.replace(/_qty2_/g, objInfoSticker._qty2_);
+    template = template.replace(
+      /_serial_number2_/g,
+      objInfoSticker._serial_number2_
+    );
+    // template = template.replace(/_image2_/g, objInfoSticker._image2_);
   }
 
   return template;
